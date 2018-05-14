@@ -1,0 +1,148 @@
+%%!! Last update 98-07-03 13:42:14
+% Sukuriam .add faila kuris reikalingas devirtualizuotam .pfb
+% T1 kodavime sukurti
+%
+% Some catcode assignments just in case we're in iniTeX:
+\catcode`\{=1
+\catcode`\}=2
+\catcode`\#=6
+\catcode`\^=7 
+% The current versions:
+\edef\spacecatcode{\the\catcode`\ }
+\edef\atcatcode{\the\catcode`\@}
+\edef\nlcatcode{\the\catcode`\^^M}
+\edef\underscorecatcode{\the\catcode`\_}
+\edef\tildecatcode{\the\catcode`\~}
+\catcode`\ =9
+\catcode`\^^M=9
+\catcode`\@=11
+\catcode`\_=11
+\catcode`\~=10
+
+%% PRADZIA
+Is LATIN.MTX
+\setcommand\topaccent#1#2#3{
+   \push
+      \getaccent{#1}{#2}% raide akcentas
+      \moveup{\max{0}{\sub{\height{#1}}{\int{xheight}}}}
+      \movert{\add{\sub{\scale{\width{#1}}{#3}}{\scale{\width{#2}}{500}}}
+         {\scale{\sub{\height{#1}}{\int{xheight}}}{\int{italicslant}}}}
+      \glyph{#2}{1000}
+   \pop
+   \glyph{#1}{1000}
+}
+
+\setcommand\botaccent#1#2#3{
+   \push
+      \getaccent{#1}{#2}% raide akcentas
+      \movert{\sub{\scale{\width{#1}}{#3}}{\scale{\width{#2}}{500}}}
+      \glyph{#2}{1000}
+   \pop
+   \glyph{#1}{1000}
+}
+
+\newif\ifaccented@ \accented@false
+\def\get@accent#1#2{
+\def\@@letter{#1}\def\@@accent{#2}\accented@true}
+
+\let\saved_getaccent\relax
+\def\getaccent#1#2{
+   \edef\temp_command{\the\glyph_map_commands\saved_getaccent{#1}{#2}}
+   \global\glyph_map_commands\expandafter{\temp_command}}
+%%%%%
+\newwrite\add_file
+\def\open_add#1{\immediate\openout\add_file=#1 \def\add_filename{#1}}
+\def\add_line#1{\immediate\write\add_file{#1}}
+%
+\def\close_add#1{\immediate\write16{#1~written~on~\add_filename.}
+   \immediate\closeout\add_file}
+%
+\def\etx_to_font#1#2{
+   \let\saved_getaccent\get@accent
+   \def\do_slot{\resetint\slot_name\slot_number}
+   \inputetx{#1}
+   \open_out{#2.\vpl_extension}
+   \open_add{#2.add}
+   \out_line{(\vpl_title\space\vpl_font\space
+      #2~created~by~fontinst~v\fontinstversion)}
+   \out_line{}
+   \out_line{(COMMENT~Filename:~#2.\vpl_extension)}
+   \out_line{(COMMENT~Created~by:~tex~\jobname)}
+   \out_line{(COMMENT~Created~using:~\vpl_caller{#1}{#2})}
+   \out_line{}
+   \out_line{(COMMENT~This~file~can~be~turned~into~a~\vpl_font~with)}
+   \out_line{(COMMENT~\vpl_to_vf{#2})}
+   \out_line{}
+   \out_line{(COMMENT~THIS~FILE~CAN~THEN~BE~DELETED.)}
+   \out_line{}
+   \make_font{#1}
+   \out_line{}
+   \out_line{(COMMENT~END~OF~FILE~#2.\vpl_extension)}
+   \close_out{\vpl_Font}
+   \make_add_ligatures
+   \close_add{\vpl_Font}
+}
+%
+% Ligaturas nurodome patys
+\newcount\@tempa
+\newcount\@tempb
+\def\make_add_ligatures{%
+\mklig{ff}{f}{f}
+\mklig{ffi}{f}{fi}
+\mklig{ffl}{f}{fl}
+\mklig{Lcaron}{L}{quoteright}
+\mklig{IJ}{I}{J}
+\mklig{lcaron}{l}{quoteright}
+\mklig{dcaron}{d}{quoteright}
+\mklig{tcaron}{t}{quoteright}
+\mklig{ij}{i}{j}
+\mklig{SS}{S}{S}
+}
+%
+% CC ff 2 ; PCC f 0 0 ; PCC f x 0; %WD y; x=ff plotis minus f plotis, y - ff plotis
+\bgroup
+\catcode`\%=12
+\gdef\pp{%}
+\egroup
+\def\mklig#1#2#3{%
+\def\slot_name{#1}
+\@tempa=\width\slot_name;
+\@tempb=\@tempa
+\def\slot_name{#3}
+\advance\@tempa by-\width\slot_name;
+\add_line{CC\space#1\space 2\space;\space PCC\space #2\space 0\space 0\space;
+   \space PCC\space #3\space \the\@tempa\space 0\space ;\space \pp\space WX\space\the\@tempb;}
+}
+%
+% CC Abreve 2 ; PCC A 0 0 ; PCC breve x y; x - hor. postumis, y - vert. postumis
+\def\@@letter{?}
+\def\@@accent{?}
+\def\end_do_character{
+   \ifisglyph\slot_name\then
+      \ifaccented@ 
+        \add_line{CC\space\slot_name\space 2\space ;\space PCC\space 
+        \@@letter\space 0\space 0\space;\space PCC\space\@@accent\space\@@movert\space\@@moveup\space ;}  
+        \gdef\@@movert{0} \gdef\@@moveup{0} \accented@false
+      \fi
+      \out_lline{)}
+   \fi
+}
+\def\@@movert{0} \def\@@moveup{0}
+\def\vpl_movert#1{
+   \gdef\@@movert{#1}
+   \afm_convert\a_dimen=#1;
+   \out_llline{(MOVERIGHT~\vpl_real\a_dimen)}
+}
+
+\def\vpl_moveup#1{
+   \gdef\@@moveup{#1}
+   \afm_convert\a_dimen=#1;
+   \out_llline{(MOVEUP~\vpl_real\a_dimen)}
+}
+
+% Restore the catcodes we changed.
+\catcode`\@=\atcatcode
+\catcode`\^^M=\nlcatcode
+\catcode`\ =\spacecatcode
+\catcode`\~=\tildecatcode
+\catcode`\_=\underscorecatcode

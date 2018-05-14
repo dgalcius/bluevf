@@ -1,0 +1,155 @@
+% FontFamily   Joanna MT
+% TexFamily    pjo
+% TexDirectory joanna
+
+%[installpaths]
+% web2c.mktexdir.afm      x:/texroot/vtex/texmf/fonts/afm
+% web2c.mktexdir.pfb      x:/texroot/vtex/texmf/fonts/type1
+% web2c.mktexdir.tfm      x:/texroot/vtex/texmf/fonts/tfm
+% web2c.mktexdir.vf       x:/texroot/vtex/texmf/fonts/vf
+% web2c.copy.fd           x:/texroot/vtex/texmf/tex/vtexadds/latex/psnfss
+% xfonts.mktexfam.dviwindo x:/win95tex/dviwindo/xfonts
+% xfonts.copy.dviwindo     x:/win95tex/dviwindo/fnt/raw
+%[endinstallpaths]
+
+\input fontinst.sty
+\installfonts
+\installfamily{T1}{pjo}{}
+
+
+%[startfont]
+% FamilyName  Joanna MT
+% FontName    JoannaMT-Bold
+% Version     001.001
+% PSFontName  job_____
+% TEXFontName pjob8r
+\transformfont{pjob8r}{\reencodefont{8r}{\fromafm{job_____}}}
+\installfont{pjob8t}{pjob8r,latin}{T1}{T1}{pjo}{b}{n}{}
+
+% small caps
+%\installfont{pjobc8t}{pjob8r,latin}{T1c}{T1}{pjo}{b}{sc}{}
+
+% small caps without 10% additional space
+%\installfont{pjobc8tn}{pjob8r,latin}{T1cx}{T1}{pjo}{b}{sn}{}
+
+% uppercase
+%\installfont{pjobu8t}{pjob8r,latin}{T1u}{T1}{pjo}{b}{uc}{}
+
+%[endfont]
+
+
+%[startfont]
+% FamilyName  Joanna MT
+% FontName    JoannaMT-BoldItalic
+% Version     001.001
+% PSFontName  jobi____
+% TEXFontName pjobi8r
+\transformfont{pjobi8r}{\reencodefont{8r}{\fromafm{jobi____}}}
+\installfont{pjobi8t}{pjobi8r,latin}{T1}{T1}{pjo}{b}{it}{}
+
+%[endfont]
+
+
+%[startfont]
+% FamilyName  Joanna MT
+% FontName    JoannaMT-ExtraBold
+% Version     001.001
+% PSFontName  joeb____
+% TEXFontName pjoeb8r
+\transformfont{pjoeb8r}{\reencodefont{8r}{\fromafm{joeb____}}}
+\installfont{pjoeb8t}{pjoeb8r,latin}{T1}{T1}{pjo}{eb}{n}{}
+
+% small caps
+%\installfont{pjorc8t}{pjor8r,latin}{T1c}{T1}{pjo}{?}{sc}{}
+
+% small caps without 10% additional space
+%\installfont{pjorc8tn}{pjor8r,latin}{T1cx}{T1}{pjo}{?}{sn}{}
+
+% uppercase
+%\installfont{pjoru8t}{pjor8r,latin}{T1u}{T1}{pjo}{?}{uc}{}
+
+%[endfont]
+
+
+%[startfont]
+% FamilyName  Joanna MT
+% FontName    JoannaMT-Italic
+% Version     001.001
+% PSFontName  joi_____
+% TEXFontName pjori8r
+\transformfont{pjori8r}{\reencodefont{8r}{\fromafm{joi_____}}}
+\installfont{pjori8t}{pjori8r,latin}{T1}{T1}{pjo}{m}{it}{}
+
+%[endfont]
+
+
+%[startfont]
+% FamilyName  Joanna MT
+% FontName    JoannaMT
+% Version     001.001
+% PSFontName  jor_____
+% TEXFontName pjor8r
+\transformfont{pjor8r}{\reencodefont{8r}{\fromafm{jor_____}}}
+\installfont{pjor8t}{pjor8r,latin}{T1}{T1}{pjo}{m}{n}{}
+
+% small caps
+%\installfont{pjorc8t}{pjor8r,latin}{T1c}{T1}{pjo}{?}{sc}{}
+
+% small caps without 10% additional space
+%\installfont{pjorc8tn}{pjor8r,latin}{T1cx}{T1}{pjo}{?}{sn}{}
+
+% uppercase
+%\installfont{pjoru8t}{pjor8r,latin}{T1u}{T1}{pjo}{?}{uc}{}
+
+%[endfont]
+
+
+%[startfont]
+% FamilyName  Joanna MT
+% FontName    JoannaMT-SemiBold
+% Version     001.001
+% PSFontName  josb____
+% TEXFontName pjor8r
+\transformfont{pjosb8r}{\reencodefont{8r}{\fromafm{josb____}}}
+\installfont{pjosb8t}{pjosb8r,latin}{T1}{T1}{pjo}{sb}{n}{}
+
+% small caps
+%\installfont{pjorc8t}{pjor8r,latin}{T1c}{T1}{pjo}{?}{sc}{}
+
+% small caps without 10% additional space
+%\installfont{pjorc8tn}{pjor8r,latin}{T1cx}{T1}{pjo}{?}{sn}{}
+
+% uppercase
+%\installfont{pjoru8t}{pjor8r,latin}{T1u}{T1}{pjo}{?}{uc}{}
+
+%[endfont]
+
+
+%[startfont]
+% FamilyName  Joanna MT
+% FontName    JoannaMT-SemiBoldItalic
+% Version     001.001
+% PSFontName  josbi___
+% TEXFontName pjori8r
+\transformfont{pjosbi8r}{\reencodefont{8r}{\fromafm{josbi___}}}
+\installfont{pjosbi8t}{pjosbi8r,latin}{T1}{T1}{pjo}{sb}{it}{}
+
+%[endfont]
+
+\endinstallfonts
+
+% Text Companion sriftai
+
+\installfonts
+\installfamily{TS1}{pjo}{}
+\installfont{pjob8c}{pjob8r,textcomp}{TS1}{TS1}{pjo}{b}{n}{}
+\installfont{pjobi8c}{pjobi8r,textcomp}{TS1}{TS1}{pjo}{b}{it}{}
+\installfont{pjor8c}{pjor8r,textcomp}{TS1}{TS1}{pjo}{m}{n}{}
+\installfont{pjori8c}{pjori8r,textcomp}{TS1}{TS1}{pjo}{m}{it}{}
+\installfont{pjoeb8c}{pjoeb8r,textcomp}{TS1}{TS1}{pjo}{eb}{n}{}
+\installfont{pjosb8c}{pjosb8r,textcomp}{TS1}{TS1}{pjo}{sb}{n}{}
+\installfont{pjosbi8c}{pjosbi8r,textcomp}{TS1}{TS1}{pjo}{sb}{it}{}
+
+\endinstallfonts
+
+\bye

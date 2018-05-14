@@ -1,0 +1,23 @@
+\relax
+
+% T1u.etx -- install a T1-encoded faked all uppercase font
+% Vytas Statulevicius, 2001
+
+\encoding
+
+% We define the parameters for T1.etx to produce a uc font.
+
+\setcommand\lc#1#2{#1}
+\setcommand\uc#1#2{#1}
+\setcommand\lctop#1#2{#1}
+\setcommand\uctop#1#2{#1}
+\setcommand\lclig#1#2{#1}
+\setcommand\uclig#1#2{#1}
+\setcommand\digit#1{#1}
+
+
+% Then we call T1.etx.
+
+\inputetx{T1}
+
+\endencoding

@@ -1,0 +1,67 @@
+%% CapsSmallCaps be 10 proc. prapletimo
+%% Vytas
+%%%========================================================================
+%%% @TeX-font-encoding-file{
+%%%    author              = "Alan Jeffrey",
+%%%    version             = "1.504",
+%%%    date                = "23 January 1996",
+%%%    time                = "14:36:03 GMT",
+%%%    filename            = "t1c.etx",
+%%%    address             = "School of Cognitive and Computing Sciences
+%%%                           University of Sussex
+%%%                           Brighton BN1 9QH
+%%%                           UK",
+%%%    FAX                 = "+44 273 678188",
+%%%    email               = "alanje@cogs.sussex.ac.uk",
+%%%    codetable           = "ISO/ASCII",
+%%%    keywords            = "encoding, Cork, TeX, PostScript",
+%%%    supported           = "yes",
+%%%    abstract            = "This is the Cork encoding as a TeX font 
+%%%                           encoding file, for use with the fontinst 
+%%%                           font installation package.",
+%%%    package             = "fontinst",
+%%%    dependencies        = "fontinst.sty, ltugboat.sty, t1.etx",
+%%% }
+%%%========================================================================
+
+\relax
+
+\encoding
+
+% We define the parameters for t1.etx to produce a c&sc font.
+
+\setcommand\lc#1#2{#1small}
+\setcommand\uc#1#2{#1}
+\setcommand\lctop#1#2{#1small}
+\setcommand\uctop#1#2{#1}
+\setcommand\lclig#1#2{#1small}
+%\setcommand\uclig#1#2{#1spaced}
+\setcommand\uclig#1#2{#1}
+\setcommand\digit#1{#1}
+
+% The default letter spacing is 1/10 of the design size, with small
+% caps 80% the size of large caps.
+
+\setint{smallcapsscale}{800}
+
+\ifisglyph{space}\then
+   \setint{interword}{\width{space}}
+\else\ifisglyph{i}\then
+   \setint{interword}{\width{i}}
+\else
+   \setint{interword}{333}
+\fi\fi
+
+   \setint{smallcapsextraspace}{0}
+   \setint{smallcapsspacing}{0}
+
+
+%\ifisint{capspacing}\then
+%   \setint{letterspacing}{\int{capspacing}}
+%\fi
+
+% Then we call t1.etx.
+
+\inputetx{T1}
+
+\endencoding

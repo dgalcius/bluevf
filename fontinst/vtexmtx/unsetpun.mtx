@@ -1,0 +1,22 @@
+% Naudojamas padaryti virtualiam italic sriftui, kur
+% isvardyti sriftai imami is roman (upright) srifto
+% Vytas Statulevicius, 2003
+
+\relax
+
+\metrics
+
+\unsetglyph{parenleft}
+\unsetglyph{parenright}
+\unsetglyph{comma}
+\unsetglyph{period}
+\unsetglyph{colon}
+\unsetglyph{semicolon}
+
+% 2007.01.10 - prideti dar sitie skliaustai:
+\unsetglyph{bracketleft}
+\unsetglyph{bracketright}
+\unsetglyph{braceleft}
+\unsetglyph{braceright}
+
+\endmetrics
